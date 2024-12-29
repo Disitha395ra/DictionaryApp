@@ -1,4 +1,4 @@
-import { StyleSheet, View, ScrollView,  Dimensions } from "react-native";
+import { StyleSheet, View, ScrollView,  Dimensions , Image} from "react-native";
 import { PaperProvider, Text, Button } from "react-native-paper";
 
 const { width, height } = Dimensions.get("window");
@@ -48,6 +48,11 @@ export default function Home() {
           >
             Capture Image
           </Button>
+          <Image
+            source={require("../assets/Homepagebanner.png")}
+            resizeMode="cover"
+            style={styles.bannerhomeimage}
+          ></Image>
         </View>
       </ScrollView>
     </PaperProvider>
@@ -62,10 +67,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 20,
   },
-  button:{
+  button: {
     margin: 10,
     width: width * 0.8,
     height: height * 0.1,
     justifyContent: "center",
+  },
+  bannerhomeimage:{
+    margin: 10,
+    width: width * 0.999,
+    height: height * 0.2,
   }
 });
