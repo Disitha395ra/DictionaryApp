@@ -10,6 +10,7 @@ import {
   ScrollView,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
+import axios from "axios";
 
 export default function TextTranslation() {
   const [text, setText] = useState("");
@@ -37,9 +38,36 @@ export default function TextTranslation() {
     }
     setLoading(true);
     try {
+      const apiKey = "AIzaSyBccJPNQkVmw5HPEWozM9Slqj6qCbnSg2g"; 
+      const prompt = `Translate this text from ${
+        languages.find((lang) => lang.code === inputLanguage)?.label
+      } to ${
+        languages.find((lang) => lang.code === outputLanguage)?.label
+      }: ${text}`;
 
-      
+      const response = await axios.post(
+        "https://api.cognitive.microsofttranslator.com/translate",
+        [
+          {
+            model: "Generative Language Client",
+            prompt: prompt,
+            max_tokens: 1000,
+          },
+        ],
+        {
+          params: {
+            "api-version": "3.0",
+            from: inputLanguage,
+            to: outputLanguage,
+          },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer ${apiKey}",
+          },
+        }
+      );
 
+      setTranslatedText(response.data.translated_text);
     } catch (error) {
       console.error("Error during translation:", error);
       alert("Translation failed. Please try again.");
