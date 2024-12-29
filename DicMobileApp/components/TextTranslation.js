@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Keyboard,
   TouchableWithoutFeedback,
+  ScrollView,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 
@@ -35,63 +36,65 @@ export default function TextTranslation() {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View style={styles.container}>
-        <Text style={styles.label}>Input Language:</Text>
-        <View style={styles.dropdownContainer}>
-          <Picker
-            selectedValue={inputLanguage}
-            onValueChange={(itemValue) => setInputLanguage(itemValue)}
-            style={styles.picker}
-          >
-            {languages.map((lang) => (
-              <Picker.Item
-                key={lang.code}
-                label={lang.label}
-                value={lang.code}
-              />
-            ))}
-          </Picker>
+      <ScrollView>
+        <View style={styles.container}>
+          <Text style={styles.label}>Input Language:</Text>
+          <View style={styles.dropdownContainer}>
+            <Picker
+              selectedValue={inputLanguage}
+              onValueChange={(itemValue) => setInputLanguage(itemValue)}
+              style={styles.picker}
+            >
+              {languages.map((lang) => (
+                <Picker.Item
+                  key={lang.code}
+                  label={lang.label}
+                  value={lang.code}
+                />
+              ))}
+            </Picker>
+          </View>
+
+          <Text style={styles.label}>Output Language:</Text>
+          <View style={styles.dropdownContainer}>
+            <Picker
+              selectedValue={outputLanguage}
+              onValueChange={(itemValue) => setOutputLanguage(itemValue)}
+              style={styles.picker}
+            >
+              {languages.map((lang) => (
+                <Picker.Item
+                  key={lang.code}
+                  label={lang.label}
+                  value={lang.code}
+                />
+              ))}
+            </Picker>
+          </View>
+
+          <Text style={styles.label}>Enter Text:</Text>
+          <TextInput
+            style={styles.input}
+            value={text}
+            onChangeText={setText}
+            placeholder="Type your text here..."
+            multiline
+          />
+
+          <TouchableOpacity style={styles.button} onPress={translateText}>
+            <Text style={styles.buttonText}>Translate</Text>
+          </TouchableOpacity>
+
+          <Text style={styles.label}>Translated Text:</Text>
+          <TextInput
+            style={styles.translatedInput}
+            value={translatedText}
+            editable={false}
+            placeholder="Translation result..."
+            multiline
+          />
         </View>
-
-        <Text style={styles.label}>Output Language:</Text>
-        <View style={styles.dropdownContainer}>
-          <Picker
-            selectedValue={outputLanguage}
-            onValueChange={(itemValue) => setOutputLanguage(itemValue)}
-            style={styles.picker}
-          >
-            {languages.map((lang) => (
-              <Picker.Item
-                key={lang.code}
-                label={lang.label}
-                value={lang.code}
-              />
-            ))}
-          </Picker>
-        </View>
-
-        <Text style={styles.label}>Enter Text:</Text>
-        <TextInput
-          style={styles.input}
-          value={text}
-          onChangeText={setText}
-          placeholder="Type your text here..."
-          multiline
-        />
-
-        <TouchableOpacity style={styles.button} onPress={translateText}>
-          <Text style={styles.buttonText}>Translate</Text>
-        </TouchableOpacity>
-
-        <Text style={styles.label}>Translated Text:</Text>
-        <TextInput
-          style={styles.translatedInput}
-          value={translatedText}
-          editable={false}
-          placeholder="Translation result..."
-          multiline
-        />
-      </View>
+      </ScrollView>
     </TouchableWithoutFeedback>
   );
 }
@@ -114,10 +117,11 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     marginBottom: 15,
     backgroundColor: "#fff",
+    height: 140,
   },
   picker: {
     width: "100%",
-    height: 50,
+    height: 140,
   },
   input: {
     borderWidth: 1,
