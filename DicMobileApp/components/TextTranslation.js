@@ -38,7 +38,7 @@ export default function TextTranslation() {
     }
 
     try {
-      const apiKey = "AIzaSyBccJPNQkVmw5HPEWozM9Slqj6qCbnSg2g"; // Replace with your GeminiAI API key
+      const apiKey = "AIzaSyBccJPNQkVmw5HPEWozM9Slqj6qCbnSg2g"; 
       const endpoint = "https://geminai.example.com/translate"; // Replace with the actual GeminiAI endpoint
 
       const response = await axios.post(
