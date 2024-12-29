@@ -1,5 +1,10 @@
 import { StyleSheet, View, ScrollView,  Dimensions , Image} from "react-native";
 import { PaperProvider, Text, Button } from "react-native-paper";
+import TextTranslation from "./TextTranslation";
+import ParagraphTranslation from "./ParagraphTranslation";
+import VoiceTranslation from "./VoiceTranslation";
+import GestureTranslation from "./GestureTranslation";
+import ImageTranslation from "./ImageTranslation";
 
 const { width, height } = Dimensions.get("window");
 
@@ -13,7 +18,7 @@ export default function Home({navigation}) {
             mode="contained"
             //onPress={() => console.log("Pressed")}
             style={styles.button}
-            onPress={() => navigation.navigate("Text Translation")}
+            onPress={() => navigation.navigate("TextTranslation")}
           >
             Text Translation
           </Button>
@@ -22,7 +27,7 @@ export default function Home({navigation}) {
             mode="contained"
             //onPress={() => console.log("Pressed")}
             style={styles.button}
-            onPress={() => navigation.navigate("Paragraph Translation")}
+            onPress={() => navigation.navigate("ParagraphTranslation")}
           >
             Paragraph Translation
           </Button>
@@ -31,7 +36,7 @@ export default function Home({navigation}) {
             mode="contained"
             //onPress={() => console.log("Pressed")}
             style={styles.button}
-            onPress={() => navigation.navigate("Voice Translation")}
+            onPress={() => navigation.navigate("VoiceTranslation")}
           >
             Voice Translation
           </Button>
@@ -40,7 +45,7 @@ export default function Home({navigation}) {
             mode="contained"
             //onPress={() => console.log("Pressed")}
             style={styles.button}
-            onPress={() => navigation.navigate("Gesture Translation")}
+            onPress={() => navigation.navigate("GestureTranslation")}
           >
             Gesture Translation
           </Button>
@@ -49,7 +54,7 @@ export default function Home({navigation}) {
             mode="contained"
             //onPress={() => console.log("Pressed")}
             style={styles.button}
-            onPress={() => navigation.navigate("Image Translation")}
+            onPress={() => navigation.navigate("ImageTranslation")}
           >
             Capture Image
           </Button>
