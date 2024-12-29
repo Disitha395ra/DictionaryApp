@@ -3,7 +3,7 @@ import { PaperProvider, Text, Button } from "react-native-paper";
 
 const { width, height } = Dimensions.get("window");
 
-export default function Home() {
+export default function Home({navigation}) {
   return (
     <PaperProvider>
       <ScrollView>
@@ -11,40 +11,45 @@ export default function Home() {
           <Button
             icon="translate"
             mode="contained"
-            onPress={() => console.log("Pressed")}
+            //onPress={() => console.log("Pressed")}
             style={styles.button}
+            onPress={() => navigation.navigate("Text Translation")}
           >
             Text Translation
           </Button>
           <Button
             icon="align-vertical-distribute"
             mode="contained"
-            onPress={() => console.log("Pressed")}
+            //onPress={() => console.log("Pressed")}
             style={styles.button}
+            onPress={() => navigation.navigate("Paragraph Translation")}
           >
             Paragraph Translation
           </Button>
           <Button
             icon="contactless-payment"
             mode="contained"
-            onPress={() => console.log("Pressed")}
+            //onPress={() => console.log("Pressed")}
             style={styles.button}
+            onPress={() => navigation.navigate("Voice Translation")}
           >
             Voice Translation
           </Button>
           <Button
             icon="debian"
             mode="contained"
-            onPress={() => console.log("Pressed")}
+            //onPress={() => console.log("Pressed")}
             style={styles.button}
+            onPress={() => navigation.navigate("Gesture Translation")}
           >
             Gesture Translation
           </Button>
           <Button
             icon="camera"
             mode="contained"
-            onPress={() => console.log("Pressed")}
+            //onPress={() => console.log("Pressed")}
             style={styles.button}
+            onPress={() => navigation.navigate("Image Translation")}
           >
             Capture Image
           </Button>
