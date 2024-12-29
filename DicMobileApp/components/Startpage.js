@@ -1,6 +1,7 @@
-import { StyleSheet, View, ScrollView, Image } from "react-native";
+import { StyleSheet, View, ScrollView, Image, Dimensions } from "react-native";
 import { PaperProvider } from "react-native-paper";
 
+const {width, height} = Dimensions.get("window");
 
 export default function Startpage() {
   return (
@@ -8,7 +9,7 @@ export default function Startpage() {
         <ScrollView>
             <View style={styles.container}>
             <Image source={require("../assets/startbanner.png")}
-            resizeMode="contain" style={styles.bannerimage}
+            resizeMode="cover" style={styles.bannerimage}
             />
             </View>
         </ScrollView>
@@ -23,7 +24,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  bannerimage:{
-    
-  }
+  bannerimage: {
+    width: width , 
+    height: height ,
+  },
 });
