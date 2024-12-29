@@ -5,6 +5,8 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  Keyboard,
+  TouchableWithoutFeedback,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 
@@ -32,55 +34,65 @@ export default function TextTranslation() {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.label}>Input Language:</Text>
-      <View style={styles.dropdownContainer}>
-        <Picker
-          selectedValue={inputLanguage}
-          onValueChange={(itemValue) => setInputLanguage(itemValue)}
-          style={styles.picker}
-        >
-          {languages.map((lang) => (
-            <Picker.Item key={lang.code} label={lang.label} value={lang.code} />
-          ))}
-        </Picker>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styles.container}>
+        <Text style={styles.label}>Input Language:</Text>
+        <View style={styles.dropdownContainer}>
+          <Picker
+            selectedValue={inputLanguage}
+            onValueChange={(itemValue) => setInputLanguage(itemValue)}
+            style={styles.picker}
+          >
+            {languages.map((lang) => (
+              <Picker.Item
+                key={lang.code}
+                label={lang.label}
+                value={lang.code}
+              />
+            ))}
+          </Picker>
+        </View>
+
+        <Text style={styles.label}>Output Language:</Text>
+        <View style={styles.dropdownContainer}>
+          <Picker
+            selectedValue={outputLanguage}
+            onValueChange={(itemValue) => setOutputLanguage(itemValue)}
+            style={styles.picker}
+          >
+            {languages.map((lang) => (
+              <Picker.Item
+                key={lang.code}
+                label={lang.label}
+                value={lang.code}
+              />
+            ))}
+          </Picker>
+        </View>
+
+        <Text style={styles.label}>Enter Text:</Text>
+        <TextInput
+          style={styles.input}
+          value={text}
+          onChangeText={setText}
+          placeholder="Type your text here..."
+          multiline
+        />
+
+        <TouchableOpacity style={styles.button} onPress={translateText}>
+          <Text style={styles.buttonText}>Translate</Text>
+        </TouchableOpacity>
+
+        <Text style={styles.label}>Translated Text:</Text>
+        <TextInput
+          style={styles.translatedInput}
+          value={translatedText}
+          editable={false}
+          placeholder="Translation result..."
+          multiline
+        />
       </View>
-
-      <Text style={styles.label}>Output Language:</Text>
-      <View style={styles.dropdownContainer}>
-        <Picker
-          selectedValue={outputLanguage}
-          onValueChange={(itemValue) => setOutputLanguage(itemValue)}
-          style={styles.picker}
-        >
-          {languages.map((lang) => (
-            <Picker.Item key={lang.code} label={lang.label} value={lang.code} />
-          ))}
-        </Picker>
-      </View>
-
-      <Text style={styles.label}>Enter Text:</Text>
-      <TextInput
-        style={styles.input}
-        value={text}
-        onChangeText={setText}
-        placeholder="Type your text here..."
-        multiline
-      />
-
-      <TouchableOpacity style={styles.button} onPress={translateText}>
-        <Text style={styles.buttonText}>Translate</Text>
-      </TouchableOpacity>
-
-      <Text style={styles.label}>Translated Text:</Text>
-      <TextInput
-        style={styles.translatedInput}
-        value={translatedText}
-        editable={false}
-        placeholder="Translation result..."
-        multiline
-      />
-    </View>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -105,7 +117,7 @@ const styles = StyleSheet.create({
   },
   picker: {
     width: "100%",
-    height: 140,
+    height: 50,
   },
   input: {
     borderWidth: 1,
