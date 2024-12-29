@@ -36,45 +36,34 @@ export default function TextTranslation() {
       alert("Please enter text to translate.");
       return;
     }
-    setLoading(true);
+
     try {
-      const apiKey = "AIzaSyBccJPNQkVmw5HPEWozM9Slqj6qCbnSg2g"; 
-      const prompt = `Translate this text from ${
-        languages.find((lang) => lang.code === inputLanguage)?.label
-      } to ${
-        languages.find((lang) => lang.code === outputLanguage)?.label
-      }: ${text}`;
+      const apiKey = "AIzaSyBccJPNQkVmw5HPEWozM9Slqj6qCbnSg2g"; // Replace with your GeminiAI API key
+      const endpoint = "https://geminai.example.com/translate"; // Replace with the actual GeminiAI endpoint
 
       const response = await axios.post(
-        "https://api.cognitive.microsofttranslator.com/translate",
-        [
-          {
-            model: "Generative Language Client",
-            prompt: prompt,
-            max_tokens: 1000,
-          },
-        ],
+        endpoint,
         {
-          params: {
-            "api-version": "3.0",
-            from: inputLanguage,
-            to: outputLanguage,
-          },
+          prompt: `Translate this text from ${inputLanguage} to ${outputLanguage}: ${text}`,
+          max_tokens: 1000,
+        },
+        {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer ${apiKey}",
+            Authorization: `Bearer ${apiKey}`,
           },
         }
       );
 
-      setTranslatedText(response.data.translated_text);
+      // Assuming the response has `translated_text` key
+      const translation = response.data.translated_text;
+      setTranslatedText(translation);
     } catch (error) {
       console.error("Error during translation:", error);
       alert("Translation failed. Please try again.");
-    } finally {
-      setLoading(false);
     }
   };
+
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
