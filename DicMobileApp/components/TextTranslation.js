@@ -1,26 +1,15 @@
-import { StyleSheet, View, ScrollView, Image, Dimensions } from "react-native";
-import { PaperProvider, Button, Text, TextInput } from "react-native-paper";
+import { StyleSheet, View, Dimensions } from "react-native";
+import { PaperProvider, Text, TextInput } from "react-native-paper";
 import React from "react";
-
+import { Picker } from "@react-native-picker/picker";
 
 export default function TextTranslation() {
-
-  const [text, setText] = React.useState("");
-
-  return (
+  return(
     <View>
-      <PaperProvider>
-        <Text variant="headlineMedium">Enter Your Text Here</Text>
-        <TextInput
-          label="Email"
-          value={text}
-          onChangeText={(text) => setText(text)}
-        />
-      </PaperProvider>
+      
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
