@@ -30,8 +30,22 @@ export default function TextTranslation() {
     { code: "ko", label: "Korean" },
   ];
 
-  const translateText = () => {
-    setTranslatedText(`Translated text to ${outputLanguage}`);
+  const translateText = async () => {
+    if (!text) {
+      alert("Please enter text to translate.");
+      return;
+    }
+    setLoading(true);
+    try {
+
+      
+
+    } catch (error) {
+      console.error("Error during translation:", error);
+      alert("Translation failed. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
